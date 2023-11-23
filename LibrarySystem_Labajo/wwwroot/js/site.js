@@ -3,6 +3,18 @@
 
 // Write your JavaScript code.
 
+
+// Set a timer to hide the element after a specific time (e.g., 5 seconds)
+setTimeout(function () {
+    document.getElementById("hiddenElement").style.display = "none";
+}, 2000); // 5000 milliseconds = 2 seconds
+
+
+
+
+
+
+//Users View sidebar
 $(document).ready(function () {
     var trigger = $('.hamburger'),
         overlay = $('.overlay'),
