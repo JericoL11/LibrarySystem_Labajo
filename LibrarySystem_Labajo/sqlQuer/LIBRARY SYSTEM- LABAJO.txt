@@ -1,0 +1,22 @@
+LIBRARY SYSTEM- LABAJO
+
+NOTE: you must update-database first before inserting the values
+
+use [LibrarySystem_Labajo]
+
+--Insert values
+
+Insert into [Users]
+
+-- firstname,lastname,username,pass,confirm,bdate
+
+Values ("Jerico","Labajo","admin","123","123",,"2001-11-01"),
+("Nino","Quirante","nino","123","123",,"2001-02-05"),
+("Felix","Alicante","felix","ali","ali",,"1991-11-10"),
+("Chou","Dracula","alucard","draco","draco",,"2005-09-05"),
+("Pudge","Gebar","pudge","123","123",,"2003-11-01"),
+("Blake","Aspire","blake","213","213",,"2022-03-14");
+
+
+
+
