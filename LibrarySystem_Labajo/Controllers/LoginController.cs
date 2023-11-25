@@ -18,7 +18,10 @@ namespace LibrarySystem_Labajo.Controllers
         public IActionResult Index()
         {
             return View();
+
         }
+
+
         [HttpPost]
         public IActionResult Login([Bind("Username , Password")] User user)
         {
@@ -28,8 +31,6 @@ namespace LibrarySystem_Labajo.Controllers
             HttpContext.Session.SetString(“key”,”value”)
             HttpContext.Session.GetString(“key”)   
              */
-
-
 
             //database checking
 
@@ -44,7 +45,7 @@ namespace LibrarySystem_Labajo.Controllers
             else
             {
 
-                //Set session 
+                //5. Set session  (6. goto "Users View" then select  _Layout_Users.cshtml)
                 HttpContext.Session.SetString("Name", $"{loginUser.FirstName} {loginUser.LastName}");
 
                 return RedirectToAction("Index", "Users");

@@ -24,9 +24,7 @@ namespace LibrarySystem_Labajo.Controllers
         // GET: Users
         public async Task<IActionResult> Index()
         {
-            //Assigning of Viewbag from Sesstion that setted in LoginUser
-           
-
+          
 
             return _context.User != null ? 
                           View(await _context.User.ToListAsync()) :

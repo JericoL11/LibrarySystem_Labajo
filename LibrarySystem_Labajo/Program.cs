@@ -12,13 +12,15 @@ builder.Services.AddDbContext<LibrarySystem_LabajoContext>(options =>
 -Is an ASP.NET Core scenario for storage of user data while the user browses a web app.
 
 -uses a store maintained by the app to persist data across requests from a client
-.
+
+
+PS: COMMENT WITH NUMBERS ARE THE STEPS IN DECLARING SESSION
 */
 
 //1. Add services memory cache
 builder.Services.AddDistributedMemoryCache();
 
-//4 Add context-Accessor   (5 - Users View Layout)
+//4 Add context-Accessor   (5 - Login Controller (Assigning of Session))
 builder.Services.AddHttpContextAccessor();
 
 //2 Assigning of Session Variable
@@ -49,7 +51,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-//declaring Session Method
+//3. declaring Session Method
 app.UseSession();
 
 app.MapControllerRoute(

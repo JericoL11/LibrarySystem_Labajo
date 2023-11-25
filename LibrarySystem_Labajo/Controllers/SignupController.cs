@@ -5,6 +5,10 @@ using LibrarySystem_Labajo.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Security.Cryptography.X509Certificates;
+//hash librar
+using LibrarySystem_Labajo.Services;
+
+
 
 namespace LibrarySystem_Labajo.Controllers
 {
@@ -38,6 +42,11 @@ namespace LibrarySystem_Labajo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index([Bind("id,FirstName,LastName,Username,Password,confirm_Password,BirthDate")] User user)
         {
+            //Harshing 
+            string harshPassword = HashingService.HashData(user.Password);
+            user.Password = harshPassword;
+            user.confirm_Password = harshPassword;
+
             if (ModelState.IsValid)
             {
              
