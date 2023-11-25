@@ -1,6 +1,8 @@
 ﻿using LibrarySystem_Labajo.Data;
 using LibrarySystem_Labajo.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json.Linq;
 
 namespace LibrarySystem_Labajo.Controllers
 {
@@ -21,6 +23,14 @@ namespace LibrarySystem_Labajo.Controllers
         public IActionResult Login([Bind("Username , Password")] User user)
         {
 
+            /*
+             SESSION GET AND SET
+            HttpContext.Session.SetString(“key”,”value”)
+            HttpContext.Session.GetString(“key”)   
+             */
+
+
+
             //database checking
 
             var loginUser = _context.User
@@ -33,6 +43,10 @@ namespace LibrarySystem_Labajo.Controllers
             }
             else
             {
+
+                //Set session 
+                HttpContext.Session.SetString("Name", $"{loginUser.FirstName} {loginUser.LastName}");
+
                 return RedirectToAction("Index", "Users");
             }
         }

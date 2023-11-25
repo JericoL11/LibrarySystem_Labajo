@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LibrarySystem_Labajo.Data;
 using LibrarySystem_Labajo.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace LibrarySystem_Labajo.Controllers
 {
@@ -19,10 +20,15 @@ namespace LibrarySystem_Labajo.Controllers
             _context = context;
         }
 
+
         // GET: Users
         public async Task<IActionResult> Index()
         {
-              return _context.User != null ? 
+            //Assigning of Viewbag from Sesstion that setted in LoginUser
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+
+
+            return _context.User != null ? 
                           View(await _context.User.ToListAsync()) :
                           Problem("Entity set 'LibrarySystem_LabajoContext.User'  is null.");
         }
@@ -41,13 +47,14 @@ namespace LibrarySystem_Labajo.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
             return View(user);
         }
 
         // GET: Users/Create
         public IActionResult Create()
         {
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
             return View();
         }
 
@@ -64,6 +71,7 @@ namespace LibrarySystem_Labajo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
             return View(user);
         }
 
@@ -80,6 +88,7 @@ namespace LibrarySystem_Labajo.Controllers
             {
                 return NotFound();
             }
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
             return View(user);
         }
 
@@ -113,6 +122,7 @@ namespace LibrarySystem_Labajo.Controllers
                         throw;
                     }
                 }
+                ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -132,7 +142,7 @@ namespace LibrarySystem_Labajo.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
             return View(user);
         }
 
@@ -152,12 +162,15 @@ namespace LibrarySystem_Labajo.Controllers
             }
             
             await _context.SaveChangesAsync();
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
             return RedirectToAction(nameof(Index));
+
         }
 
         private bool UserExists(int id)
         {
-          return (_context.User?.Any(e => e.id == id)).GetValueOrDefault();
+            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+            return (_context.User?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

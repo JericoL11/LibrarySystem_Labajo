@@ -17,6 +17,7 @@
 
             <form method="post" asp-action="Index">
 
+                <!-- SUCCESSFUL ALERT -->
                 <div id="hiddenElement" style="display: @((ViewBag.ShowHidden ?? false) ? "block" : "none")">
     <!-- Hidden content here -->
                     <h6 class="alert-success text-center">@ViewBag.Message</h6>

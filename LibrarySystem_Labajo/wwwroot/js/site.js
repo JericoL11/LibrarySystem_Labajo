@@ -4,6 +4,7 @@
 // Write your JavaScript code.
 
 
+//=========For Successful Signup ================
 // Set a timer to hide the element after a specific time (e.g., 5 seconds)
 setTimeout(function () {
     document.getElementById("hiddenElement").style.display = "none";
