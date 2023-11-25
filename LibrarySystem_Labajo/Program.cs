@@ -12,14 +12,13 @@ builder.Services.AddDbContext<LibrarySystem_LabajoContext>(options =>
 -Is an ASP.NET Core scenario for storage of user data while the user browses a web app.
 
 -uses a store maintained by the app to persist data across requests from a client
-
---uSED FOR STORING A DATA PERMANELTY WHILE THE PROGRAM IS RUNNING. It will dsiplay using ViewBag or ViewData(based Upon this program).
+.
 */
 
 //1. Add services memory cache
 builder.Services.AddDistributedMemoryCache();
 
-//4 Ad context-Accessor   (5 - Users View)
+//4 Add context-Accessor   (5 - Users View Layout)
 builder.Services.AddHttpContextAccessor();
 
 //2 Assigning of Session Variable

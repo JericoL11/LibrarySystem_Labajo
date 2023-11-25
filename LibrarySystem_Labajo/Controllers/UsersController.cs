@@ -25,7 +25,7 @@ namespace LibrarySystem_Labajo.Controllers
         public async Task<IActionResult> Index()
         {
             //Assigning of Viewbag from Sesstion that setted in LoginUser
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+           
 
 
             return _context.User != null ? 
@@ -47,14 +47,14 @@ namespace LibrarySystem_Labajo.Controllers
             {
                 return NotFound();
             }
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+          
             return View(user);
         }
 
         // GET: Users/Create
         public IActionResult Create()
         {
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+          
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace LibrarySystem_Labajo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+      
             return View(user);
         }
 
@@ -88,7 +88,7 @@ namespace LibrarySystem_Labajo.Controllers
             {
                 return NotFound();
             }
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+           
             return View(user);
         }
 
@@ -122,7 +122,7 @@ namespace LibrarySystem_Labajo.Controllers
                         throw;
                     }
                 }
-                ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+             
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -142,7 +142,7 @@ namespace LibrarySystem_Labajo.Controllers
             {
                 return NotFound();
             }
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+       
             return View(user);
         }
 
@@ -162,14 +162,14 @@ namespace LibrarySystem_Labajo.Controllers
             }
             
             await _context.SaveChangesAsync();
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+      
             return RedirectToAction(nameof(Index));
 
         }
 
         private bool UserExists(int id)
         {
-            ViewBag.sessionName = HttpContext.Session.GetString("Name").ToUpper();
+        
             return (_context.User?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }

@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!--session injection -- to access session-->
+    @inject IHttpContextAccessor HCA
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LibrarySystem_Labajo</title>
@@ -22,7 +25,8 @@
                     <div class="sidebar-brand">
 
                         <a style="text-decoration:none; color:white;">
-                          @ViewBag.sessionName
+                            <!--Get the session data-->
+                          @HCA.HttpContext.Session.GetString("Name")
                         </a><br />
                         <small style="color:white; font-size:14px;">User Account</small>
                     </div>
