@@ -1,0 +1,50 @@
+﻿@model LibrarySystem_Labajo.Models.Books
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_Layout_Users.cshtml";
+}
+
+<h1 class="text-white">Create</h1>
+
+<h4 class="text-white">Books</h4>
+<hr />
+<div class="row text-white">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="bookName" class="control-label"></label>
+                <input asp-for="bookName" class="form-control" />
+                <span asp-validation-for="bookName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="author" class="control-label"></label>
+                <input asp-for="author" class="form-control" />
+                <span asp-validation-for="author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="categoryId" class="control-label"></label>
+                <select asp-for="categoryId" class ="form-control" asp-items="ViewBag.categoryId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="dateAdded" class="control-label"></label>
+                <input asp-for="dateAdded" class="form-control" />
+                <span asp-validation-for="dateAdded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-warning fw-bold my-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <button class="btn btn-warning px-2 py-2 mb-2 fw-bold"> <a class="text-black" style="text-decoration:none" asp-action="Index">Back to List</a></button>
+
+  @*   <a asp-action="Index">Back to List</a> *@
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

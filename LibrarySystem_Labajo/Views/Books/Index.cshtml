@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LibrarySystem_Labajo.Models.Books>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout_Users.cshtml";
+}
+
+<h1 class="text-white">Books</h1>
+
+<p>
+    <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-action="Create" style="text-decoration:none">Create New</a></button>
+
+    @* <a class="btn btn-outer-warning" asp-action="Create">Create New</a> *@
+</p>
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.bookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bookcategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bookcategory.categoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dateAdded)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookcategory.categoryId)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bookcategory.categoryName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateAdded)
+            </td>
+            <td>
+                <a class="text-warning" asp-action="Edit" asp-route-id="@item.bookId">Edit</a> |
+                <a class="text-warning" asp-action="Details" asp-route-id="@item.bookId">Details</a> |
+                <a class="text-warning" asp-action="Delete" asp-route-id="@item.bookId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

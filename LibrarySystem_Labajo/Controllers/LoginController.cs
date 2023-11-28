@@ -1,5 +1,6 @@
 ﻿using LibrarySystem_Labajo.Data;
 using LibrarySystem_Labajo.Models;
+using LibrarySystem_Labajo.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
@@ -26,6 +27,10 @@ namespace LibrarySystem_Labajo.Controllers
         public IActionResult Login([Bind("Username , Password")] User user)
         {
 
+            //Assign Userpassword to its original state
+            string harshPassword = HashingService.HashData(user.Password);
+            user.Password = harshPassword;
+         
             /*
              SESSION GET AND SET
             HttpContext.Session.SetString(“key”,”value”)

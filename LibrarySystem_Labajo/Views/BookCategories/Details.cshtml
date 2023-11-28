@@ -1,0 +1,28 @@
+﻿@model LibrarySystem_Labajo.Models.BookCategory
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout_Users.cshtml";
+}
+
+<h1 class="text-white">Details</h1>
+
+<div>
+    <h4 class="text-white">BookCategory</h4>
+    <hr />
+    <dl class="row text-white">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.categoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.categoryName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <button class="btn btn-warning px-2 py-0 fw-bold"> <a class="text-black" style="text-decoration:none" asp-action="Edit" asp-route-id="@Model?.categoryId">Edit</a></button>
+    <button class="btn btn-warning px-2 py-0 fw-bold"> <a class="text-black" style="text-decoration:none" asp-action="Index">Back to List</a></button>
+
+   @*  <a asp-action="Edit" asp-route-id="@Model?.categoryId">Edit</a> |
+    <a asp-action="Index">Back to List</a> *@
+</div>

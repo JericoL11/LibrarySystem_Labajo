@@ -1,0 +1,37 @@
+﻿@model LibrarySystem_Labajo.Models.BookCategory
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout_Users.cshtml";
+}
+
+<h1 class="text-white">Edit</h1>
+
+<h4 class="text-white">BookCategory</h4>
+<hr />
+<div class="row text-white">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="categoryId" />
+            <div class="form-group">
+                <label asp-for="categoryName" class="control-label"></label>
+                <input asp-for="categoryName" class="form-control" />
+                <span asp-validation-for="categoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-warning fw-bold my-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <button class="btn btn-warning px-2 py-0"> <a class="text-black fw-bold" style="text-decoration:none;"<a asp-action="Index" style="text-decoration:none">Back to list</a></button>
+
+  @*   <a asp-action="Index">Back to List</a> *@
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

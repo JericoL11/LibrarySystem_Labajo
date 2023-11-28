@@ -4,6 +4,7 @@ using LibrarySystem_Labajo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibrarySystem_Labajo.Migrations
 {
     [DbContext(typeof(LibrarySystem_LabajoContext))]
-    partial class LibrarySystem_LabajoContextModelSnapshot : ModelSnapshot
+    [Migration("20231128125155_AddedBooksAndCategory")]
+    partial class AddedBooksAndCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

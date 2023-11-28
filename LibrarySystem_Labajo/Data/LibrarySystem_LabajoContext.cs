@@ -15,5 +15,9 @@ namespace LibrarySystem_Labajo.Data
         }
 
         public DbSet<LibrarySystem_Labajo.Models.User> User { get; set; } = default!;
+
+        public DbSet<LibrarySystem_Labajo.Models.Books>? Books { get; set; }
+
+        public DbSet<LibrarySystem_Labajo.Models.BookCategory>? BookCategory { get; set; }
     }
 }
