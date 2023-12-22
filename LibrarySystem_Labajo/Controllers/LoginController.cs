@@ -26,35 +26,43 @@ namespace LibrarySystem_Labajo.Controllers
         [HttpPost]
         public IActionResult Login([Bind("Username , Password")] User user)
         {
-
-            //Assign Userpassword to its original state
-            string harshPassword = HashingService.HashData(user.Password);
-            user.Password = harshPassword;
-         
-            /*
-             SESSION GET AND SET
-            HttpContext.Session.SetString(“key”,”value”)
-            HttpContext.Session.GetString(“key”)   
-             */
-
-            //database checking
-
-            var loginUser = _context.User
-                            .Where(data => data.Username == user.Username && data.Password == user.Password).FirstOrDefault();
-
-            if (loginUser == null)
+            //if no input in the textbox
+            if(string.IsNullOrWhiteSpace(user.Username) && string.IsNullOrWhiteSpace(user.Password))
             {
-                ModelState.AddModelError("", "Incorrect username or password");
-                return View("Index", user);
+                ModelState.AddModelError("", "Please input username or password");
+                return View("Index");
             }
             else
             {
+                //Assign Userpassword to its original state
+                string harshPassword = HashingService.HashData(user.Password);
+                user.Password = harshPassword;
 
-                //5. Set session  (6. goto "Users View" then select  _Layout_Users.cshtml)
-                HttpContext.Session.SetString("Name", $"{loginUser.FirstName} {loginUser.LastName}");
+                /*
+                 SESSION GET AND SET
+                HttpContext.Session.SetString(“key”,”value”)
+                HttpContext.Session.GetString(“key”)   
+                 */
+                //database checking
 
-                return RedirectToAction("Index", "Users");
+                var loginUser = _context.User
+                                .Where(data => data.Username == user.Username && data.Password == user.Password).FirstOrDefault();
+
+                if (loginUser == null)
+                {
+                    ModelState.AddModelError("", "Incorrect username or password");
+                    return View("Index", user);
+                }
+                else
+                {
+
+                    //5. Set session  (6. goto "Users View" then select  _Layout_Users.cshtml)
+                    HttpContext.Session.SetString("Name", $"{loginUser.FirstName} {loginUser.LastName}");
+
+                    return RedirectToAction("Home", "Users");
+                }
             }
+           
         }
     }
 }

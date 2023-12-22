@@ -1,0 +1,49 @@
+﻿@model LibrarySystem_Labajo.Models.Records
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout_Users.cshtml";
+}
+<div class="text-white">
+
+<h1>Details</h1>
+
+<div>
+    <h4>Records</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FK_borrower)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FK_borrower.b_Course)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.due_date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.due_date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FK_librarian)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FK_librarian.FirstName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.transac_date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.transac_date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <button class="btn btn-success px-2 py-0"> <a asp-action="Edit" asp-route-id="@Model?.record_id" style="text-decoration:none;" class="text-white px-1">Edit</a></button>
+    <button class="btn btn-warning px-2 py-0"> <a asp-action="Index" style="text-decoration:none;" class="text-black px-1">Back</a></button>
+
+@* 
+    <a asp-action="Edit" asp-route-id="@Model?.record_id">Edit</a> |
+    <a asp-action="Index">Back to List</a> *@
+</div>
+</div>

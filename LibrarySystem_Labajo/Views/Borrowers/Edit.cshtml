@@ -1,0 +1,63 @@
+﻿@model LibrarySystem_Labajo.Models.Borrower
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout_Users.cshtml";
+}
+<div class="text-white">
+<h1>Edit</h1>
+
+<h4>Borrower</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="b_Id" />
+            <div class="form-group">
+                <label asp-for="b_fname" class="control-label"></label>
+                <input asp-for="b_fname" class="form-control" />
+                <span asp-validation-for="b_fname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="b_lname" class="control-label"></label>
+                <input asp-for="b_lname" class="form-control" />
+                <span asp-validation-for="b_lname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="b_Course" class="control-label"></label>
+                <input asp-for="b_Course" class="form-control" />
+                <span asp-validation-for="b_Course" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="b_PhoneNumber" class="control-label"></label>
+                <input asp-for="b_PhoneNumber" class="form-control" />
+                <span asp-validation-for="b_PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="b_Email" class="control-label"></label>
+                <input asp-for="b_Email" class="form-control" />
+                <span asp-validation-for="b_Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date_registered" class="control-label"></label>
+                <input asp-for="date_registered" class="form-control" />
+                <span asp-validation-for="date_registered" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary my-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+
+    <button class="btn btn-warning px-2 py-0"> <a asp-action="Index"  style="text-decoration:none;" class="text-black px-1">Back</a></button>
+
+
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

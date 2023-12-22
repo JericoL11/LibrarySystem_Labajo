@@ -68,6 +68,132 @@ namespace LibrarySystem_Labajo.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Borrower", b =>
+                {
+                    b.Property<int>("b_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("b_Id"), 1L, 1);
+
+                    b.Property<string>("b_Course")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("b_Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("b_PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("b_fname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("b_lname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("date_registered")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("b_Id");
+
+                    b.ToTable("Borrower");
+                });
+
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Details", b =>
+                {
+                    b.Property<int>("details_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("details_id"), 1L, 1);
+
+                    b.Property<int?>("books_id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("record_id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("return_date")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("details_id");
+
+                    b.HasIndex("books_id");
+
+                    b.HasIndex("record_id");
+
+                    b.ToTable("Details");
+                });
+
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Penalty", b =>
+                {
+                    b.Property<int?>("Penalty_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Penalty_Id"), 1L, 1);
+
+                    b.Property<double?>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<bool?>("IsSettled")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("P_details_Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Penalty_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Penalty_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("details_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Penalty_Id");
+
+                    b.HasIndex("details_id");
+
+                    b.ToTable("Penalty");
+                });
+
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Records", b =>
+                {
+                    b.Property<int>("record_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("record_id"), 1L, 1);
+
+                    b.Property<int>("borrowerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("due_date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("librarianId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("transac_date")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("record_id");
+
+                    b.HasIndex("borrowerId");
+
+                    b.HasIndex("librarianId");
+
+                    b.ToTable("Records");
+                });
+
             modelBuilder.Entity("LibrarySystem_Labajo.Models.User", b =>
                 {
                     b.Property<int>("id")
@@ -113,6 +239,49 @@ namespace LibrarySystem_Labajo.Migrations
                         .IsRequired();
 
                     b.Navigation("bookcategory");
+                });
+
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Details", b =>
+                {
+                    b.HasOne("LibrarySystem_Labajo.Models.Books", "FK_books_id")
+                        .WithMany()
+                        .HasForeignKey("books_id");
+
+                    b.HasOne("LibrarySystem_Labajo.Models.Records", "FK_record_id")
+                        .WithMany()
+                        .HasForeignKey("record_id");
+
+                    b.Navigation("FK_books_id");
+
+                    b.Navigation("FK_record_id");
+                });
+
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Penalty", b =>
+                {
+                    b.HasOne("LibrarySystem_Labajo.Models.Details", "FK_details")
+                        .WithMany()
+                        .HasForeignKey("details_id");
+
+                    b.Navigation("FK_details");
+                });
+
+            modelBuilder.Entity("LibrarySystem_Labajo.Models.Records", b =>
+                {
+                    b.HasOne("LibrarySystem_Labajo.Models.Borrower", "FK_borrower")
+                        .WithMany()
+                        .HasForeignKey("borrowerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LibrarySystem_Labajo.Models.User", "FK_librarian")
+                        .WithMany()
+                        .HasForeignKey("librarianId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FK_borrower");
+
+                    b.Navigation("FK_librarian");
                 });
 #pragma warning restore 612, 618
         }

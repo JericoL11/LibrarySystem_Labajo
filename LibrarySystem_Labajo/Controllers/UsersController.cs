@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LibrarySystem_Labajo.Data;
 using LibrarySystem_Labajo.Models;
 using Microsoft.AspNetCore.Http;
+using LibrarySystem_Labajo.Services;
 
 namespace LibrarySystem_Labajo.Controllers
 {
@@ -29,6 +30,14 @@ namespace LibrarySystem_Labajo.Controllers
             return _context.User != null ? 
                           View(await _context.User.ToListAsync()) :
                           Problem("Entity set 'LibrarySystem_LabajoContext.User'  is null.");
+        }
+
+
+        // GET: Users/Create
+        public IActionResult Home()
+        {
+
+            return View();
         }
 
         // GET: Users/Details/5
@@ -63,6 +72,11 @@ namespace LibrarySystem_Labajo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,FirstName,LastName,Username,Password,confirm_Password,BirthDate")] User user)
         {
+            //Assign Userpassword to its original state
+            string harshPassword = HashingService.HashData(user.Password);
+            user.Password = harshPassword;  
+            user.confirm_Password = harshPassword;
+
             if (ModelState.IsValid)
             {
                 _context.Add(user);
@@ -97,6 +111,11 @@ namespace LibrarySystem_Labajo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,FirstName,LastName,Username,Password,confirm_Password,BirthDate")] User user)
         {
+            //Assign Userpassword to its original state
+            string harshPassword = HashingService.HashData(user.Password);
+            user.Password = harshPassword;
+            user.confirm_Password = harshPassword;
+
             if (id != user.id)
             {
                 return NotFound();

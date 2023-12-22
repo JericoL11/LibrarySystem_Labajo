@@ -1,0 +1,82 @@
+﻿@model IEnumerable<LibrarySystem_Labajo.Models.Details>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout_Users.cshtml";
+}
+
+<div class="text-white">
+<h1>Details</h1>
+
+
+<button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-action="Create">Create New</a></button>
+
+    <div class="text-end margin-0">
+        <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-controller="Borrowers" asp-action="Index">Borrower</a></button>
+        <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-controller="Records" asp-action="Index">Records</a></button>
+        <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-controller="Penalties" asp-action="Index">Penalty</a></button>
+
+    </div>
+
+<table class="table text-white">
+    <thead>
+        <tr class="text-center">
+            <th>
+                <p style="margin:0;"> Details ID</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Borrower Name</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Borrower ID</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Book Name</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Due Date</p>
+            </th>
+            <th>
+                <p style="margin:0;"> Return Date</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.details_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_record_id.FK_borrower.b_fname)
+                @Html.Raw(' ')
+                @Html.DisplayFor(modelItem => item.FK_record_id.FK_borrower.b_lname)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_record_id.FK_borrower.b_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FK_books_id.bookName)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.FK_record_id.due_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.return_date)
+            </td>
+            <td>
+                   <button class="btn btn-success px-2 py-0"><a asp-action="Edit" asp-route-id="@item.details_id" style="text-decoration:none;" class="text-white">Edit</a></button>
+                   <button class="btn btn-info px-2 py-0"><a asp-action="Details" asp-route-id="@item.details_id" style="text-decoration:none;" class="text-dark">Details</a></button>
+                   <button class="btn btn-danger  px-2 py-0"><a asp-action="Delete" asp-route-id="@item.details_id" style="text-decoration:none;" class="text-white">Delete</a></button>
+            
+                @* <a asp-action="Edit" asp-route-id="@item.details_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.details_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.details_id">Delete</a> *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

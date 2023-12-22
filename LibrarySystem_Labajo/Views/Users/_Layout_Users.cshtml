@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  
+    
     <!--6 session injection -- to access session-->
+
     @inject IHttpContextAccessor HCA
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LibrarySystem_Labajo.styles.css" asp-append-version="true" />
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+ 
+   
 </head>
 
 
@@ -19,7 +25,7 @@
         <div class="overlay"></div>
 
         <!-- Sidebar -->
-        <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+        <nav class="navbar navbar-inverse fixed-top text-center" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <div class="sidebar-header">
                     <div class="sidebar-brand">
@@ -31,7 +37,8 @@
                         <small style="color:white; font-size:14px;">User Account</small>
                     </div>
                 </div>
-                <li class="mt-5"><a asp-area="" asp-controller="Users" asp-action="Index">Home</a></li>
+                <li class="mt-5"><a asp-area="" asp-controller="Users" asp-action="Home">Home</a></li>
+                <li><a asp-area="" asp-controller="Users" asp-action="Index">Librarian</a></li>
                
                 @*<li><a href="#events">Events</a></li> *@
             
@@ -46,8 +53,11 @@
                 <li><a href="#awards">Awards</a></li>
                 </ul>
                 </li> *@
-                <li><a asp-area="" asp-controller="Books" asp-action="Index">Books</a></li>
-                <li><a asp-area="" asp-controller="BookCategories" asp-action="Index">Category</a></li>
+                <li><a asp-area="" asp-controller="Books" asp-action="Index">Books | Category </a></li>
+                <li><a asp-area="" asp-controller="Borrowers" asp-action="Index">Transactions</a></li>
+           @*      <li><a asp-area="" asp-controller="Records" asp-action="Index">Transaction</a></li>
+                <li><a asp-area="" asp-controller="Details" asp-action="Index">Details </a></li> *@
+                <li><a asp-area="" asp-controller="Report" asp-action="Index">Report</a></li>
                 <li><a asp-area="" asp-controller="Login" asp-action="Index">Logout</a></li>
             </ul>
         </nav>
@@ -101,6 +111,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @* Embed DataTables *@
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

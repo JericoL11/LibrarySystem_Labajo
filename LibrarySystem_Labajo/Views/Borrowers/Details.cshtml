@@ -1,0 +1,61 @@
+﻿@model LibrarySystem_Labajo.Models.Borrower
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout_Users.cshtml";
+}
+<div class="text-white">
+<h1>Details</h1>
+
+<div>
+    <h4>Borrower</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.b_fname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.b_fname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.b_lname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.b_lname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.b_Course)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.b_Course)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.b_PhoneNumber)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.b_PhoneNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.b_Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.b_Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.date_registered)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.date_registered)
+        </dd>
+    </dl>
+</div>
+<div>
+        <button class="btn btn-success px-2 py-0"> <a asp-action="Edit" asp-route-id="@Model?.b_Id" style="text-decoration:none;" class="text-white px-1">Edit</a></button>
+        <button class="btn btn-warning px-2 py-0"> <a asp-action="Index" style="text-decoration:none;" class="text-black px-1">Back</a></button>
+
+        
+        
+        @* <a asp-action="Edit" asp-route-id="@Model?.b_Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>*@
+</div>
+</div>

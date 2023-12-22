@@ -5,16 +5,19 @@
     Layout = "_Layout_Users.cshtml";
 }
 
-<h1 class="text-white">Books</h1>
-
+<h1 class="text-white text-center">Books</h1>
+<div class="text-end margin-0">
 <p>
-    <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-action="Create" style="text-decoration:none">Create New</a></button>
+    <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-action="Create" style="text-decoration:none">Add Books</a></button>
 
+    <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-controller="BookCategories" asp-action="Index" style="text-decoration:none">Category</a></button>
+ 
     @* <a class="btn btn-outer-warning" asp-action="Create">Create New</a> *@
 </p>
+</div>
 <table class="table text-white">
     <thead>
-        <tr>
+        <tr class="text-center">
             <th>
                 @Html.DisplayNameFor(model => model.bookName)
             </th>
@@ -35,7 +38,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="text-center">
             <td>
                 @Html.DisplayFor(modelItem => item.bookName)
             </td>
@@ -52,9 +55,14 @@
                 @Html.DisplayFor(modelItem => item.dateAdded)
             </td>
             <td>
-                <a class="text-warning" asp-action="Edit" asp-route-id="@item.bookId">Edit</a> |
+
+                <button class="btn btn-success px-2 py-0"><a asp-action="Edit" asp-route-id="@item.bookId" style="text-decoration:none;" class="text-white">Edit</a></button>
+                <button class="btn btn-info px-2 py-0"><a asp-action="Details" asp-route-id="@item.bookId" style="text-decoration:none;" class="text-dark">Details</a></button>
+                <button class="btn btn-danger  px-2 py-0"><a asp-action="Delete" asp-route-id="@item.bookId" style="text-decoration:none;" class="text-white">Delete</a></button>
+            
+              @*   <a class="text-warning" asp-action="Edit" asp-route-id="@item.bookId">Edit</a> |
                 <a class="text-warning" asp-action="Details" asp-route-id="@item.bookId">Details</a> |
-                <a class="text-warning" asp-action="Delete" asp-route-id="@item.bookId">Delete</a>
+                <a class="text-warning" asp-action="Delete" asp-route-id="@item.bookId">Delete</a> *@
             </td>
         </tr>
 }

@@ -61,14 +61,28 @@ namespace LibrarySystem_Labajo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("bookId,bookName,author,categoryId,dateAdded")] Books books)
         {
-            if (ModelState.IsValid)
+            //check book name
+            var check_bookName = _context.Books.FirstOrDefault( b => b.bookName == books.bookName);
+
+            if(check_bookName != null)
             {
-                _context.Add(books);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Book name is already exist.");
+                //category select display
+                ViewData["categoryId"] = new SelectList(_context.Set<BookCategory>(), "categoryId", "categoryName");
+                return View();
             }
-            ViewData["categoryId"] = new SelectList(_context.Set<BookCategory>(), "categoryId", "categoryId", books.categoryId);
-            return View(books);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(books);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["categoryId"] = new SelectList(_context.Set<BookCategory>(), "categoryId", "categoryId", books.categoryId);
+                return View(books);
+            }
+           
         }
 
         // GET: Books/Edit/5

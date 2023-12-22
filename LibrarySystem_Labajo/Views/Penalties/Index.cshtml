@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LibrarySystem_Labajo.Models.Penalty>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout_Users.cshtml";
+}
+<div class="text-white">
+<h1>Penalty List</h1>
+
+<div class="text-end margin-0">
+    <button class="btn btn-warning px-2 py-0"> <a class="text-black" style="text-decoration:none;"<a asp-controller="Details" asp-action="Index">Details</a></button>
+</div>
+
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Penalty_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSettled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.P_details_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Penalty_name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Penalty_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSettled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.P_details_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Penalty_name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Penalty_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Penalty_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Penalty_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LibrarySystem_Labajo.Data;
 using LibrarySystem_Labajo.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LibrarySystem_Labajo.Controllers
 {
@@ -59,13 +60,24 @@ namespace LibrarySystem_Labajo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("categoryId,categoryName")] BookCategory bookCategory)
         {
-            if (ModelState.IsValid)
+            //check category name
+            var check_category = _context.BookCategory.FirstOrDefault(c => c.categoryName == bookCategory.categoryName);
+            if(check_category != null)
             {
-                _context.Add(bookCategory);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("", "Category name is already exist.");
+                return View();
             }
-            return View(bookCategory);
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(bookCategory);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(bookCategory);
+            }
+           
         }
 
         // GET: BookCategories/Edit/5

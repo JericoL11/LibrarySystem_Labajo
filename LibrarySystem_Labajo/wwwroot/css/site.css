@@ -81,6 +81,11 @@ body {
     background-size: cover;
 }
 
+
+#Home_Wallpaper {
+    background: url('../images/Home-bg-1.jpg') fixed no-repeat center bottom;
+    background-size: cover;
+}
 /*SIDE BAR*/
 
 
@@ -288,13 +293,13 @@ html {
     top: 0;
 }
 /*Fontawesome icons*/
-.nav.sidebar-nav li a::before {
+/*.nav.sidebar-nav li a::before {
     font-family: fontawesome;
     content: "\f12e";
     vertical-align: baseline;
     display: inline-block;
     padding-right: 5px;
-}
+}*/
 
 a[href*="#home"]::before {
     content: "\f015" !important;

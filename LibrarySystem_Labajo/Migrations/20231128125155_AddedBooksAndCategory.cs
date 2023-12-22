@@ -14,7 +14,7 @@ namespace LibrarySystem_Labajo.Migrations
                 columns: table => new
                 {
                     categoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "10000, 1"),
                     categoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -27,7 +27,7 @@ namespace LibrarySystem_Labajo.Migrations
                 columns: table => new
                 {
                     bookId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "2000, 1"),
                     bookName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     author = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     categoryId = table.Column<int>(type: "int", nullable: false),

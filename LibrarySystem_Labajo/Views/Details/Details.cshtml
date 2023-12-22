@@ -1,0 +1,41 @@
+﻿@model LibrarySystem_Labajo.Models.Details
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout_Users.cshtml";
+}
+<div class="text-white">
+<h1>Details</h1>
+
+<div>
+    <h4>Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FK_books_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FK_books_id.bookName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FK_record_id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FK_record_id.record_id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.return_date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.return_date)
+        </dd>
+    </dl>
+</div>
+</div>
+<div>
+
+    <button class="btn btn-success px-2 py-0"> <a asp-action="Edit" asp-route-id="@Model?.details_id" style="text-decoration:none;" class="text-white px-1">Edit</a></button>
+    <button class="btn btn-warning px-2 py-0"> <a asp-action="Index" style="text-decoration:none;" class="text-black px-1">Back</a></button>
+
+@*     <a asp-action="Index">Back to List</a> *@
+</div>

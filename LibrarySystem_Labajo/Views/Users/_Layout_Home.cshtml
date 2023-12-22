@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!--6 session injection -- to access session-->
+
+    @inject IHttpContextAccessor HCA
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LibrarySystem_Labajo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LibrarySystem_Labajo.styles.css" asp-append-version="true" />
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+ 
+   
+</head>
+
+
+<body id="Home_Wallpaper">
+    <!-- /#sidebar-wrapper -->
+    <div id="wrapper">
+        <div class="overlay"></div>
+
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse fixed-top text-center" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <div class="sidebar-header">
+                    <div class="sidebar-brand">
+
+                        <a style="text-decoration:none; color:white;">
+                            <!-- 7. Get the session data-->
+                          @HCA.HttpContext.Session.GetString("Name")
+                        </a><br />
+                        <small style="color:white; font-size:14px;">User Account</small>
+                    </div>
+                </div>
+                <li class="mt-5"><a asp-area="" asp-controller="Users" asp-action="Home">Home</a></li>
+                <li><a asp-area="" asp-controller="Users" asp-action="Index">Librarian</a></li>
+               
+                @*<li><a href="#events">Events</a></li> *@
+            
+                @*                 <li class="dropdown">
+                <a href="#works" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+                <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                <div class="dropdown-header">Dropdown heading</div>
+                <li><a href="#pictures">Pictures</a></li>
+                <li><a href="#videos">Videeos</a></li>
+                <li><a href="#books">Books</a></li>
+                <li><a href="#art">Art</a></li>
+                <li><a href="#awards">Awards</a></li>
+                </ul>
+                </li> *@
+                <li><a asp-area="" asp-controller="Books" asp-action="Index">Books | Category </a></li>
+                <li><a asp-area="" asp-controller="Borrowers" asp-action="Index">Transactions</a></li>
+           @*      <li><a asp-area="" asp-controller="Records" asp-action="Index">Transaction</a></li>
+                <li><a asp-area="" asp-controller="Details" asp-action="Index">Details </a></li> *@
+                <li><a asp-area="" asp-controller="Report" asp-action="Index">Report</a></li>
+                <li><a asp-area="" asp-controller="Login" asp-action="Index">Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    @*
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibrarySystem_Labajo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> *@
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+   @*  <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - LibrarySystem_Labajo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @* Embed DataTables *@
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+    
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
